@@ -1,1 +1,25 @@
-<p>home works!</p>
+<div class="row">
+  <div
+    class="col-sm-12 col-md-4 col-lg-3"
+    (updatePokemonList)="getPokemons($event)"
+    *ngFor="let pokemon of pokemonList.results"
+  >
+    <app-pokemon-card [pokemon]="pokemon"></app-pokemon-card>
+  </div>
+</div>
+<div class="row justify-content-center mt-5">
+  <div class="col-sm-12">
+    <nav aria-label="Page navigation example">
+      <ul class="pagination">
+        <li class="page-item" [ngClass]="{'disabled': pokemonList.previous === null}">
+          <a class="page-link" (click)="getPokemons(pokemonList.previous)"
+            >Previous</a
+          >
+        </li>
+        <li class="page-item">
+          <a class="page-link" (click)="getPokemons(pokemonList.next)">Next</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</div>

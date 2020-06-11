@@ -7,13 +7,15 @@ import { NavbarComponent } from './components/shared/navbar/navbar.component';
 import { PokemonComponent } from './components/pokemon/pokemon.component';
 import { HomeComponent } from './components/home/home.component';
 import { HttpClientModule } from '@angular/common/http';
+import { PokemonCardComponent } from './components/pokemon-card/pokemon-card.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     PokemonComponent,
-    HomeComponent
+    HomeComponent,
+    PokemonCardComponent
   ],
   imports: [
     BrowserModule,

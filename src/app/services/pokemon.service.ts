@@ -10,7 +10,11 @@ export class PokemonService {
 
   constructor(private http: HttpClient) { }
 
-  getPokemons(){
-    return this.http.get(this.environ.myPokemonApi);
+  getPokemons(url: string = this.environ.myPokemonApi){
+    return this.http.get(url);
+  }
+
+  getPokemon(pokemonId: number){
+    return this.http.get(`${this.environ.myPokemonApi}/${pokemonId}`);
   }
 }
