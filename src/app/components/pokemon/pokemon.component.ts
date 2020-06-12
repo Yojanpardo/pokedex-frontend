@@ -58,18 +58,25 @@ export class PokemonComponent implements OnInit {
   loadEvolutions() {
     this.pokemonService.getPokemonByUrl(this.evolutionChain['chain']['species']['url']).subscribe((p: Pokemon) => {
       this.evolutions.push(p);
-      this.evolutionChain['chain']['evolves_to'].forEach(element => {
-        this.pokemonService.getPokemonByUrl(element['species']['url']).subscribe((p: Pokemon) => {
-          this.evolutions.push(p);
-          element['evolves_to'].forEach(element2 => {
-            this.pokemonService.getPokemonByUrl(element2['species']['url']).subscribe((p2: Pokemon) => {
-              this.evolutions.push(p2);
+      if (this.evolutionChain['chain']['evolves_to'].length > 0){
+        this.evolutionChain['chain']['evolves_to'].forEach(element => {
+          this.pokemonService.getPokemonByUrl(element['species']['url']).subscribe((p: Pokemon) => {
+            this.evolutions.push(p);
+            if (element['evolves_to'].length > 0){
+              element['evolves_to'].forEach(element2 => {
+                this.pokemonService.getPokemonByUrl(element2['species']['url']).subscribe((p2: Pokemon) => {
+                  this.evolutions.push(p2);
+                  this.isLoadingEvolutionChain = false;
+                });
+              });
+            } else {
               this.isLoadingEvolutionChain = false;
-            });
+            }
           });
         });
-      });
+      } else {
+        this.isLoadingEvolutionChain = false;
+      }
     });
-    
   }
 }
