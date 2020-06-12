@@ -8,4 +8,6 @@ export class Pokemon {
     types: any[];
     abilities: Ability[];
     weight: number;
+    evolutionChainUrl: string;
+    stats: any[];
 }

@@ -8,6 +8,7 @@ import { PokemonComponent } from './components/pokemon/pokemon.component';
 import { HomeComponent } from './components/home/home.component';
 import { HttpClientModule } from '@angular/common/http';
 import { PokemonCardComponent } from './components/pokemon-card/pokemon-card.component';
+import { LoaderComponent } from './components/shared/loader/loader.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { PokemonCardComponent } from './components/pokemon-card/pokemon-card.com
     NavbarComponent,
     PokemonComponent,
     HomeComponent,
-    PokemonCardComponent
+    PokemonCardComponent,
+    LoaderComponent
   ],
   imports: [
     BrowserModule,

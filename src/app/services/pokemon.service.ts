@@ -10,11 +10,23 @@ export class PokemonService {
 
   constructor(private http: HttpClient) { }
 
-  getPokemons(url: string = this.environ.myPokemonApi){
+  getPokemons(url: string = `${this.environ.myPokemonApiContext}${this.environ.pokemonContext}`){
     return this.http.get(url);
   }
 
   getPokemon(pokemonId: number){
-    return this.http.get(`${this.environ.myPokemonApi}/${pokemonId}`);
+    return this.http.get(`${this.environ.myPokemonApiContext}${this.environ.pokemonContext}${pokemonId}`);
+  }
+
+  getPokemonSpecies(pokemonId: number){
+    return this.http.get(`${this.environ.myPokemonApiContext}${this.environ.pokemonSpeciesContext}${pokemonId}`);
+  }
+
+  getEvolutionChain(id: number){
+    return this.http.get(`${this.environ.myPokemonApiContext}${this.environ.evolutionChainContext}${id}`)
+  }
+
+  getPokemonByUrl(url: string){
+    return this.http.get(url);
   }
 }
