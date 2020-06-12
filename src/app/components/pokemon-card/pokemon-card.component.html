@@ -1,5 +1,5 @@
 <div class="card m-1">
-    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{pokemon.id}}.png" class="card-img-top" alt="...">
+    <img (click)="seePokemon(pokemon.id)" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{pokemon.id}}.png" class="card-img-top" alt="...">
     <div class="card-body">
       <h5 class="card-title">{{ pokemon.name }}</h5>
       <p>Type: <span *ngFor="let type of pokemon.types">{{ type.type.name }} </span> </p>
@@ -9,7 +9,4 @@
       <li class="list-group-item"><b>Abilities:</b></li>
       <li class="list-group-item" *ngFor="let ability of pokemon.abilities; let i = index">{{ i+1 }}. {{ ability.ability.name }}</li>
     </ul>
-    <div class="card-body">
-        <button class="btn btn-outline-primary" (click)="seePokemon(pokemon.id)">See more...</button>
-    </div>
   </div>

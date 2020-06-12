@@ -13,8 +13,7 @@
       <ul class="pagination">
         <li class="page-item" [ngClass]="{'disabled': pokemonList.previous === null}">
           <a class="page-link" (click)="getPokemons(pokemonList.previous)"
-            >Previous</a
-          >
+            >Previous</a>
         </li>
         <li class="page-item">
           <a class="page-link" (click)="getPokemons(pokemonList.next)">Next</a>

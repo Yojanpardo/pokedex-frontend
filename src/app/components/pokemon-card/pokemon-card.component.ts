@@ -10,13 +10,14 @@ import { Router } from '@angular/router';
 })
 export class PokemonCardComponent implements OnInit {
   @Input() pokemon: Pokemon;
+  isLoading: boolean;
 
   constructor(private pokemonService: PokemonService, private router: Router) { }
 
   ngOnInit(): void {
+    this.isLoading = true;
     this.pokemonService.getPokemon(this.pokemon.id).subscribe( (p: Pokemon) => {
       this.pokemon = p;
-      console.log(p);
     });
   }
 
