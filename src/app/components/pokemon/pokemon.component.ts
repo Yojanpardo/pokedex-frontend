@@ -13,7 +13,7 @@ export class PokemonComponent implements OnInit {
   isLoading: boolean;
   pokemon: Pokemon;
   pokemonSpecies: PokemonSpecies;
-  evolutions: Pokemon[] = [];
+  evolutions: Pokemon[];
   evolutionChain: any;
   isLoadingEvolutionChain: boolean;
 
@@ -22,6 +22,7 @@ export class PokemonComponent implements OnInit {
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params => {
+      this.evolutions = [];
       this.isLoading = true;
       this.isLoadingEvolutionChain = true;
       this.pokemon = new Pokemon();
