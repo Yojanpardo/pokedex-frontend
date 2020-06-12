@@ -1,4 +1,4 @@
 
 export class Environment{
-    myPokemonApi = 'http://localhost:8080/api/v1/pokemon';
+    myPokemonApi = 'http://3.19.56.132/api/v1/pokemon';
 }
