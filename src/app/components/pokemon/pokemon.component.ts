@@ -16,6 +16,8 @@ export class PokemonComponent implements OnInit {
   evolutions: Pokemon[];
   evolutionChain: any;
   isLoadingEvolutionChain: boolean;
+  flavorText: string;
+  flavorTextEntries: any[];
 
   constructor(private pokemonService: PokemonService, private activatedRoute: ActivatedRoute) {
    }
@@ -41,6 +43,11 @@ export class PokemonComponent implements OnInit {
   getPokemonSpecies(pokemonId: number) {
     this.pokemonService.getPokemonSpecies(pokemonId).subscribe((p: PokemonSpecies) => {
       this.pokemonSpecies = p;
+      p['flavor_text_entries'].forEach( entry => {
+        if (entry['language']['name'] === 'en'){
+          this.flavorText = entry['flavor_text'];
+        }
+      });
       this.getEvolutionChain();
     });
   }
