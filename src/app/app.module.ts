@@ -9,6 +9,7 @@ import { HomeComponent } from './components/home/home.component';
 import { HttpClientModule } from '@angular/common/http';
 import { PokemonCardComponent } from './components/pokemon-card/pokemon-card.component';
 import { LoaderComponent } from './components/shared/loader/loader.component';
+import { Error404Component } from './components/shared/error404/error404.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { LoaderComponent } from './components/shared/loader/loader.component';
     PokemonComponent,
     HomeComponent,
     PokemonCardComponent,
-    LoaderComponent
+    LoaderComponent,
+    Error404Component
   ],
   imports: [
     BrowserModule,
