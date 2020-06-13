@@ -9,18 +9,24 @@ import { PokemonList } from 'src/app/models/pokemon-list.model';
 })
 export class HomeComponent implements OnInit {
   pokemonList = new PokemonList();
+  isLoading: boolean;
 
-  constructor(private pokemonService: PokemonService) { }
+  constructor(private pokemonService: PokemonService) {
+    this.isLoading = true;
+  }
 
   ngOnInit(): void {
     this.pokemonService.getPokemons().subscribe((data: PokemonList) => {
       this.pokemonList = data;
+      this.isLoading = false;
     });
   }
 
   getPokemons(url) {
+    this.isLoading = true;
     this.pokemonService.getPokemons(url).subscribe((data: PokemonList) => {
       this.pokemonList = data;
+      this.isLoading = false;
     });
   }
 }
