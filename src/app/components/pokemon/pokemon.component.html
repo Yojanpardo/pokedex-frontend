@@ -1,6 +1,6 @@
 <app-loader *ngIf="isLoading"></app-loader>
 <div class="row">
-  <ng-container *ngIf="!isLoading">
+  <ng-container *ngIf="!isLoading && pokemonFound">
     <app-pokemon-card
       [pokemon]="pokemon"
       class="col-sm-12 col-md-4 col-lg-3"
@@ -22,4 +22,7 @@
       </div>
     </div>
   </ng-container>
+  <div *ngIf="!pokemonFound && !isLoading">
+    <app-error404></app-error404>
+  </div>
 </div>
