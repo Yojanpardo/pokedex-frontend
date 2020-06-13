@@ -31,9 +31,6 @@ export class PokemonComponent implements OnInit {
       this.pokemon = new Pokemon();
       this.pokemon.id = params['id'];
       this.getPokemon(this.pokemon.id);
-      if (this.pokemonFound){
-        this.getPokemonSpecies(this.pokemon.id);
-      }
     });
   }
 
@@ -41,12 +38,14 @@ export class PokemonComponent implements OnInit {
     if (localStorage.getItem(`pokemon${pokemonId}`)){
       this.pokemon = JSON.parse(localStorage.getItem(`pokemon${pokemonId}`));
       this.isLoading = false;
+      this.pokemonFound = true;
+      this.getPokemonSpecies(this.pokemon.id);
     } else {
       this.pokemonService.getPokemon(pokemonId).subscribe((p: Pokemon) => {
         this.pokemon = p;
         console.log(p);
         localStorage.setItem(`pokemon${pokemonId}`, JSON.stringify(p));
-        this.pokemonFound = true;
+        this.getPokemonSpecies(this.pokemon.id);
       }, error => {
         console.log(error);
         this.isLoading = false;
@@ -62,6 +61,7 @@ export class PokemonComponent implements OnInit {
       const evolutionChainId = Number(localStorage.getItem(`evolution_chain_id${pokemonId}`));
       this.getEvolutionChain(evolutionChainId);
       this.isLoading = false;
+      this.pokemonFound = true;
     } else {
       this.pokemonService.getPokemonSpecies(pokemonId).subscribe((p: PokemonSpecies) => {
         this.pokemonSpecies = p;
@@ -77,6 +77,7 @@ export class PokemonComponent implements OnInit {
         localStorage.setItem(`evolution_chain_id${pokemonId}`, evolutionChainId);
         this.getEvolutionChain(evolutionChainId);
         this.isLoading = false;
+        this.pokemonFound = true;
       });
     }
   }
