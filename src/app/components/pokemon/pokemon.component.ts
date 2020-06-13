@@ -18,8 +18,9 @@ export class PokemonComponent implements OnInit {
   isLoadingEvolutionChain: boolean;
   flavorText: string;
   flavorTextEntries: any[];
+  pokemonFound: boolean;
   constructor(private pokemonService: PokemonService, private activatedRoute: ActivatedRoute) {
-    
+
    }
 
   ngOnInit(): void {
@@ -30,7 +31,9 @@ export class PokemonComponent implements OnInit {
       this.pokemon = new Pokemon();
       this.pokemon.id = params['id'];
       this.getPokemon(this.pokemon.id);
-      this.getPokemonSpecies(this.pokemon.id);
+      if (this.pokemonFound){
+        this.getPokemonSpecies(this.pokemon.id);
+      }
     });
   }
 
@@ -41,7 +44,13 @@ export class PokemonComponent implements OnInit {
     } else {
       this.pokemonService.getPokemon(pokemonId).subscribe((p: Pokemon) => {
         this.pokemon = p;
+        console.log(p);
         localStorage.setItem(`pokemon${pokemonId}`, JSON.stringify(p));
+        this.pokemonFound = true;
+      }, error => {
+        console.log(error);
+        this.isLoading = false;
+        this.pokemonFound = false;
       });
     }
   }
