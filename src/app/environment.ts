@@ -5,4 +5,5 @@ export class Environment{
     pokemonContext = 'pokemon/';
     pokemonSpeciesContext = 'pokemon-species/';
     evolutionChainContext = 'evolution-chain/';
+    apiDocumentation = 'http://3.128.62.213:8080/swagger-ui.html';
 }
